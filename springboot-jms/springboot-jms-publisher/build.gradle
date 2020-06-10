@@ -1,0 +1,19 @@
+buildscript {
+	ext.springBootVersion = '2.3.0.RELEASE'
+	repositories {
+		maven {
+			url System.getenv('MAVEN_REPO_URL')
+		}
+	}
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+	}
+}
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-activemq'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+}

@@ -1,0 +1,27 @@
+buildscript {
+	ext.springBootVersion = '2.3.0.RELEASE'
+	repositories {
+		maven {
+			url System.getenv('MAVEN_REPO_URL')
+		}
+	}
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+	}
+}
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'application'
+
+mainClassName = 'com.jin.Consumer'
+
+jar {
+	manifest { attributes 'Main-Class': 'com.jin.Consumer' }
+	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-activemq'
+	implementation 'org.json:json:20180813'
+}

@@ -1,0 +1,13 @@
+subprojects {
+	apply plugin: 'java'
+
+	group = 'com.jin'
+	version = '0.0.1-SNAPSHOT'
+	sourceCompatibility = '1.8'
+
+	repositories {
+		maven {
+			url System.getenv('MAVEN_REPO_URL')
+		}
+	}
+}
